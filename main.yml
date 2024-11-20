@@ -7,3 +7,4 @@
     - configure_terminator
     - configure_zsh
     - configure_vscode
+    - configure_nvm

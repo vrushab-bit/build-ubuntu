@@ -1,0 +1,31 @@
+---
+# tasks file for nvm
+
+- name: Download NVM install script
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+    dest: /tmp/install_nvm.sh
+    mode: '0755'
+
+- name: Install NVM
+  ansible.builtin.shell: |
+    set -o pipefail
+    /tmp/install_nvm.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm"
+
+- name: Add NVM to profile
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"  # Change to .zshrc if using Zsh
+    line: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+    state: present
+
+- name: Install Node.js LTS using NVM
+  ansible.builtin.shell: |
+    source ~/.zshrc && nvm install --lts
+  args:
+    executable: /bin/zsh
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/node/$(nvm version-remote --lts)"

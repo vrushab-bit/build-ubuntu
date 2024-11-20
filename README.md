@@ -11,6 +11,7 @@ The script currently includes two primary roles:
 - [Configure Terminator](role_overview/configure_terminator.md): This role installs Terminator and configures it with user preferences.
 - [Configure ZSH](role_overview/configure_zsh.md): This role installs Zsh and Oh-my-zsh and configures it with user preferences.
 - [Configure VSCode](role_overview/configure_vscode): This role installs VScode and configures settings.json and installs various extensions.
+- [Configure NVM](role_overview/configure_nvm): This role installs NVM and Installs latest Node --lts version.
 
 
 ### Installation Instructions
@@ -47,6 +48,7 @@ build-ubuntu/
 │   ├── update_system_packages/
 │   ├── configure_terminator/
 │   ├── configure_zsh/
+│   ├── configure_nvm/
 │   └── configure_vscode/
 └── README.md                 # Project documentation
 ```
