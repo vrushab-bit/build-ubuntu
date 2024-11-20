@@ -3,4 +3,4 @@
   hosts: localhost
   connection: local
   roles:
-    - role: update_system_packages
+    - role: configure_terminator

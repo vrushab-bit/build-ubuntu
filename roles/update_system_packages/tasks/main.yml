@@ -3,7 +3,7 @@
 - name: "Update and Upgrade System Packages"
   ansible.builtin.apt:
     update_cache: true
-    upgrade: dist
+    upgrade: full
     cache_valid_time: 3600
     autoremove: true
     autoclean: true

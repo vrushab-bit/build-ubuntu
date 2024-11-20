@@ -1,0 +1,35 @@
+---
+# tasks file for configure_terminator
+- name: "Install Terminator"
+  ansible.builtin.apt:
+    name: terminator
+    update_cache: true
+    state: present
+  become: true
+  become_method: ansible.builtin.sudo
+  become_user: root
+  when: ansible_os_family == "Debian"
+  tags: terminator
+
+  # Copy the terminator config file to the user's home directory
+- name: "Copy Terminator Config File"
+  ansible.builtin.copy:
+    src: files/terminator_config
+    dest: "{{ ansible_env.HOME }}/.config/terminator/config"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    mode: "0644"
+  become: false
+  tags:
+    - terminator
+    - config
+    - copy
+    - file
+    - terminator-config
+    - copy-terminator-config
+    - copy-terminator-config-file
+    - copy-terminator-config-file-to-home
+    - copy-terminator-config-file-to-home-directory
+    - copy-terminator-config-file-to-home-directory-config
+    - copy-terminator-config-file-to-home-directory-config-terminator
+    - copy-terminator-config-file-to-home-directory-config-terminator-config
