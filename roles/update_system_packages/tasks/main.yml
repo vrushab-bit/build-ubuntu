@@ -1,0 +1,67 @@
+---
+# tasks file for update-system-packages
+- name: "Update and Upgrade System Packages"
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+    cache_valid_time: 3600
+    autoremove: true
+    autoclean: true
+    force_apt_get: true
+  become: true
+  become_method: ansible.builtin.sudo
+  become_user: root
+  when: ansible_os_family == "Debian"
+  tags:
+    - update
+    - upgrade
+    - apt
+    - debian
+    - ubuntu
+    - linux
+    - system
+    - packages
+    - update-system-packages
+    - update-system-packages-apt
+    - update-system-packages-debian
+    - update-system-packages-ubuntu
+    - update-system-packages-linux
+    - update-system-packages-system
+    - update-system-packages-packages
+    - update-system-packages-update
+    - update-system-packages-upgrade
+    - update-system-packages-apt-update
+    - update-system-packages-apt-upgrade
+    - update-system-packages-debian-update
+    - update-system-packages-debian-upgrade
+    - update-system-packages-ubuntu-update
+    - update-system-packages-ubuntu-upgrade
+    - update-system-packages-linux-update
+    - update-system-packages-linux-upgrade
+    - update-system-packages-system-update
+    - update-system-packages-system-upgrade
+    - update-system-packages-packages-update
+    - update-system-packages-packages-upgrade
+    - update-system-packages-update-apt
+    - update-system-packages-upgrade-apt
+    - update-system-packages-update-debian
+    - update-system-packages-upgrade-debian
+    - update-system-packages-update-ubuntu
+    - update-system-packages-upgrade-ubuntu
+    - update-system-packages-update-linux
+    - update-system-packages-upgrade-linux
+    - update-system-packages-update-system
+    - update-system-packages-upgrade-system
+    - update-system-packages-update-packages
+    - update-system-packages-upgrade-packages
+    - update-system-packages-apt-update
+    - update-system-packages-apt-upgrade
+    - update-system-packages-debian-update
+    - update-system-packages-debian-upgrade
+    - update-system-packages-ubuntu-update
+    - update-system-packages-ubuntu-upgrade
+    - update-system-packages-linux-update
+    - update-system-packages-linux-upgrade
+    - update-system-packages-system-update
+    - update-system-packages-system-upgrade
+    - update-system-packages-packages-update
