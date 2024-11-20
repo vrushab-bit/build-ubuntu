@@ -3,4 +3,6 @@
   hosts: localhost
   connection: local
   roles:
-    - role: configure_terminator
+    - update_system_packages
+    - configure_terminator
+    - configure_zsh

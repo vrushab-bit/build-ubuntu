@@ -1,5 +1,5 @@
 # Ansible Automation Script for Ubuntu Customization
-[![Technology](https://skillicons.dev/icons?i=ansible,ubuntu,linux&theme=light)](https://skillicons.dev)
+[![Technology](https://skillicons.dev/icons?i=ansible,ubuntu,linuxs&theme=light)](https://skillicons.dev)
 
 ### Description
 This project provides an Ansible automation script designed to streamline the customization of Ubuntu installations. The script installs and configures all necessary packages and applications, setting up various profiles on the system to enhance productivity and user experience.
@@ -9,6 +9,7 @@ The script currently includes two primary roles:
 
 - [Update System Packages](role_overview/update_system_packages.md): This role updates and upgrades system packages on Ubuntu.
 - [Configure Terminator](role_overview/configure_terminator.md): This role installs Terminator and configures it with user preferences.
+- [Configure ZSH](role_overview/configure_zsh.md): This role installs Zsh and Oh-my-zsh and configures it with user preferences.
 
 
 ### Installation Instructions

@@ -1,6 +1,6 @@
 galaxy_info:
   author: Vrushab Ghodke
-  role_name: configure_terminator
+  role_name: configure_zsh
   description: Bit-Dev-Ansible-Role
 
   # If the issue tracker for your role is not on github, uncomment the

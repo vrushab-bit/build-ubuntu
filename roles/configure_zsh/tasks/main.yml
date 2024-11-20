@@ -1,0 +1,51 @@
+---
+# tasks file for configure_zsh
+- name: "Ensure or Install ZSH"
+  ansible.builtin.apt:
+    name: zsh
+    update_cache: true
+    state: present
+  become: true
+  become_method: ansible.builtin.sudo
+  become_user: root
+  when: ansible_os_family == "Debian"
+  tags: zsh
+
+- name: "Get Oh-My-Zsh Script"
+  ansible.builtin.get_url:
+    url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/install_ohmyzsh.sh
+    mode: "0755"
+
+- name: "Run Oh-My-Zsh Script (Unattended)"
+  ansible.builtin.command: sh /tmp/install_ohmyzsh.sh --unattended
+  register: ohmyzsh_output
+  failed_when: "'FAILED' in ohmyzsh_output.stderr"
+  tags: zsh
+  args:
+    creates: /home/{{ ansible_env.USER }}/.oh-my-zsh
+
+
+- name: "Get zsh-autosuggestions plugin from github"
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    version: master
+    clone: true
+    update: true
+  tags: zsh
+
+- name: "Copy Zsh Configuration File"
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    mode: "0644"
+
+- name: "Change default shell to Zsh for the current user"
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/bin/zsh
+  become: true
+  become_method: ansible.builtin.sudo
+  become_user: root
+  when: ansible_os_family == "Debian"
