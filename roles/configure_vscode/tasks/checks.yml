@@ -1,0 +1,12 @@
+---
+- name: Check if Snap is available
+  ansible.builtin.command: snap version
+  register: snap_check
+  changed_when: false
+  ignore_errors: true
+
+- name: Check if Visual Studio Code is installed
+  ansible.builtin.command: code --version
+  register: vscode_check
+  changed_when: false
+  ignore_errors: true

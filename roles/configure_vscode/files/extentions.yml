@@ -1,0 +1,12 @@
+extensions:
+  - redhat.ansible
+  - ms-azuretools.vscode-docker
+  - formulahendry.auto-rename-tag
+  - dsznajder.es7-react-js-snippets
+  - GitHub.copilot
+  - GitHub.copilot-chat
+  - oderwat.indent-rainbow
+  - Equinusocio.vsc-material-theme-icons
+  - esbenp.prettier-vscode
+  - ms-python.python
+  - redhat.vscode-yaml

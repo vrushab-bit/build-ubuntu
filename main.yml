@@ -6,3 +6,4 @@
     - update_system_packages
     - configure_terminator
     - configure_zsh
+    - configure_vscode

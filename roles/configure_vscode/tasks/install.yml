@@ -1,0 +1,20 @@
+---
+- name: Install Visual Studio Code via Snap if not already installed
+  community.general.snap:
+    name: code
+    state: present
+  when:
+    - snap_check.rc == 0
+    - vscode_check.rc != 0
+
+- name: Notify if Visual Studio Code is already installed
+  ansible.builtin.debug:
+    msg: "Visual Studio Code is already installed."
+  when: vscode_check.rc == 0
+
+- name: Notify if Visual Studio Code was just installed
+  ansible.builtin.debug:
+    msg: "Visual Studio Code has been installed via Snap."
+  when:
+    - snap_check.rc == 0
+    - vscode_check.rc != 0

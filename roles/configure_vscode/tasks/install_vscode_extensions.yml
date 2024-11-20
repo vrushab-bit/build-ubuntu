@@ -1,0 +1,13 @@
+---
+- name: Load VSCode extensions from file
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/roles/configure_vscode/files/extentions.yml"
+    name: vscode_exts
+
+- name: Install Extensions for VSCode
+  ansible.builtin.command:
+    cmd: code --install-extension {{ item }} --force
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item }}"
+  loop: "{{ vscode_exts.extensions }}"
+  when:
+    - snap_check.rc == 0

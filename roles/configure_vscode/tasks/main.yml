@@ -1,0 +1,16 @@
+---
+# tasks file for configure_vscode
+- name: Check for Snap And VSCode
+  ansible.builtin.include_tasks: checks.yml
+
+- name: Install VScode via Snap
+  ansible.builtin.include_tasks: install.yml
+
+- name: Install VScode extensions
+  ansible.builtin.include_tasks: install_vscode_extensions.yml
+
+- name: Copy custom settings.json to user directory
+  ansible.builtin.template:
+    src: settings.json.j2         # Custom settings template file
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
+    mode: "0644"
