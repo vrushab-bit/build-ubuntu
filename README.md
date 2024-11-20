@@ -10,6 +10,7 @@ The script currently includes two primary roles:
 - [Update System Packages](role_overview/update_system_packages.md): This role updates and upgrades system packages on Ubuntu.
 - [Configure Terminator](role_overview/configure_terminator.md): This role installs Terminator and configures it with user preferences.
 - [Configure ZSH](role_overview/configure_zsh.md): This role installs Zsh and Oh-my-zsh and configures it with user preferences.
+- [Configure VSCode](role_overview/configure_vscode): This role installs VScode and configures settings.json and installs various extensions.
 
 
 ### Installation Instructions
@@ -44,11 +45,9 @@ build-ubuntu/
 ├── main.yml                  # Main playbook file
 ├── roles/
 │   ├── update_system_packages/
-│   │   ├── tasks/
-│   │   │   └── main.yml      # Tasks for updating system packages
-│   └── configure_terminator/
-│       ├── tasks/
-│       │   └── main.yml      # Tasks for configuring Terminator
+│   ├── configure_terminator/
+│   ├── configure_zsh/
+│   └── configure_vscode/
 └── README.md                 # Project documentation
 ```
 
