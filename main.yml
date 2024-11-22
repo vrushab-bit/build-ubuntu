@@ -8,3 +8,4 @@
     - configure_zsh
     - configure_vscode
     - configure_nvm
+    - configure_docker
