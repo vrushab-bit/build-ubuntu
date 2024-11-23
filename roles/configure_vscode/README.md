@@ -1,38 +1,58 @@
-Role Name
-=========
+# Configure Visual Studio Code
 
-A brief description of the role goes here.
+## Overview
+The **Configure Visual Studio Code** role automates the installation of Visual Studio Code (VS Code) on Ubuntu systems via Snap. VS Code is a popular source code editor that supports various programming languages and provides numerous extensions, including those for Ansible development.
 
-Requirements
-------------
+## Responsibilities
+- Installs Visual Studio Code using Snap if it is not already installed.
+- Notifies the user if Visual Studio Code is already installed or if it has just been installed.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Tasks
+1. **Install Visual Studio Code via Snap**: 
+   - Uses the `community.general.snap` module to install VS Code if it is not already present on the system.
 
-Role Variables
---------------
+   ```yaml
+   - name: Install Visual Studio Code via Snap if not already installed
+     community.general.snap:
+       name: code
+       state: present
+     when:
+       - snap_check.rc == 0
+       - vscode_check.rc != 0
+   ```
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+2. **Notify if Visual Studio Code is Already Installed**: 
+   - Uses the `debug` module to inform the user that VS Code is already installed.
 
-Dependencies
-------------
+   ```yaml
+   - name: Notify if Visual Studio Code is already installed
+     ansible.builtin.debug:
+       msg: "Visual Studio Code is already installed."
+     when: vscode_check.rc == 0
+   ```
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+3. **Notify if Visual Studio Code Was Just Installed**: 
+   - Uses the `debug` module to inform the user that VS Code has been successfully installed via Snap.
 
-Example Playbook
-----------------
+   ```yaml
+   - name: Notify if Visual Studio Code was just installed
+     ansible.builtin.debug:
+       msg: "Visual Studio Code has been installed via Snap."
+     when:
+       - snap_check.rc == 0
+       - vscode_check.rc != 0
+   ```
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Usage
+This role can be included in your main playbook as follows:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- name: Configure Visual Studio Code for users
+  hosts: all
+  roles:
+    - configure_vscode
+```
 
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Requirements 
+- Ansible must be installed on the control node.
+- The target machine must be running Ubuntu and have internet access to download packages.

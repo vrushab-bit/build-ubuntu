@@ -12,6 +12,7 @@ The script currently includes two primary roles:
 - [Configure ZSH](role_overview/configure_zsh.md): This role installs Zsh and Oh-my-zsh and configures it with user preferences.
 - [Configure VSCode](role_overview/configure_vscode): This role installs VScode and configures settings.json and installs various extensions.
 - [Configure NVM](role_overview/configure_nvm): This role installs NVM and Installs latest Node --lts version.
+- [Configure Docker](role_overview/configure_docker): This role install Docker and adds the user to docker group.
 
 
 ### Installation Instructions
@@ -49,6 +50,7 @@ build-ubuntu/
 │   ├── configure_terminator/
 │   ├── configure_zsh/
 │   ├── configure_nvm/
+│   ├── configure_docker/
 │   └── configure_vscode/
 └── README.md                 # Project documentation
 ```
